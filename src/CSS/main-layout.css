@@ -1,0 +1,26 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #14213d;
+    color: #e5e5e5;
+}
+
+.hamburger-menu-logo{
+    font-size: 2rem;
+    color: #e5e5e5;
+}
+span {
+    position: relative;
+}
+
+span:before {
+    position: absolute;
+    content: '';
+    height: .2em;
+    width: 80%;
+    bottom: .1em;
+    background: #fca311; 
+}
