@@ -20,10 +20,10 @@
 .popular-movie-card{
     display: flex;
     flex-direction:column ;
-    width: 13rem;
+    width: 11rem;
     align-items: center;
     text-align: center;
-    margin-left:2rem;
+    margin-left:3rem;
     padding:.5rem;
 }
 .popular-movie-card:hover{
