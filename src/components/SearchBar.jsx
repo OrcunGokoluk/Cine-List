@@ -1,13 +1,21 @@
 import React from 'react'
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useNavigate} from "react-router-dom"
 
 function Searchbar() {
+    const navigate = useNavigate();
+    
+    function getData(formData){
+        const movieName =formData.get("searchbar").trim()
+            navigate(`search?query=${movieName}`)        
+          }
+
   return (
     <>
-    <div className='input-wrapper'>
-        <FaMagnifyingGlass className='search-icon' />
+    <form action={getData} className='input-wrapper'>
+        <button  className='search-icon'><FaMagnifyingGlass  /></button>
         <input className='searchbar' type="text" name="searchbar" placeholder='Search'/>
-    </div>
+    </form>
     </>
   )
 }

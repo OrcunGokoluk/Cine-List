@@ -17,7 +17,7 @@ function PopularMovies() {
   return (
     <>
     <section className='popular'>
-    <h2>Popular</h2>
+    <h2>What's Popular</h2>
       <div class="scrolling-wrapper">
         {popularMovies.map((movie, index)=><PopularMovieCard  key={index} image_path={movie.poster_path} title={movie.title}/>)}
     </div>

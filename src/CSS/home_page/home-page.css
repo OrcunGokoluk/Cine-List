@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 47vh;
+    height: 46vh;
     width: 100%;
     background-color: rgba(3, 0, 59, 0.735);
     color: 	#FFF5EE;
@@ -40,6 +40,8 @@
 }
 
 .search-icon{
+    border: none;
+    background-color: white;
     position: absolute;
     text-align: center;
     font-size: 1.5rem;
