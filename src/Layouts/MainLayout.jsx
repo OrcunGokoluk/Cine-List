@@ -21,6 +21,7 @@ function MainLayout() {
         <Outlet/>
       </main>
     {/* ----------------------------------------------------------------------- */}
+    <div className='footer-placeholder'></div>
       <footer>
         <p>&copy; Orcun Gokoluk</p>
       </footer>
