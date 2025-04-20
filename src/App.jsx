@@ -2,16 +2,17 @@ import React from 'react'
 import './CSS/App.css'
 import MainLayout from './Layouts/MainLayout'
 import {Routes, Route} from "react-router-dom"
+import HomePage from './pages/HomePage'
 
 function App() {
 
   return (
     <>
     <Routes>
-      <Route index element={<MainLayout/>}>
-
+      <Route path="/" element={<MainLayout/>}>
+        <Route index element={<HomePage/>}/>
       </Route>
-    </Routes>s
+    </Routes>
     </>
   )
 }

@@ -1,3 +1,5 @@
+/* Main Comp-------------------------------------------------------- */
+
 header{
     display: flex;
     align-items: center;
@@ -7,11 +9,25 @@ header{
     background-color: #14213d;
     color: #e5e5e5;
 }
+/* Hamburger------------------------------------------------------------------- */
 
 .hamburger-menu-logo{
     font-size: 2rem;
     color: #e5e5e5;
 }
+.hamburger-menu-logo a, .hamburger-menu-logo a:visited{
+    color: #e5e5e5;
+}
+
+/* Account Icon ---------------------------------------------------------------------------- */
+.account-icon{
+    font-size: 1.8rem;
+}
+.account-icon a, .account-icon a:visited{
+    color: #e5e5e5;
+}
+
+/* Main Logo------------------------------------------------------------------- */
 span {
     position: relative;
 }
@@ -23,4 +39,17 @@ span:before {
     width: 80%;
     bottom: .1em;
     background: #fca311; 
+}
+
+/* Footer--------------------------------------------------------- */
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    background-color: #14213d;
+    width: 100%;
+    color:#e5e5e5;
+    padding: 2rem;
 }

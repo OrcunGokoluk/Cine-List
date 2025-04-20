@@ -1,0 +1,8 @@
+.welcome-image{
+    position: relative;
+    height: 30vh;
+    background-color: antiquewhite;
+    background-image:url("../../public/images/cinema.jpg");
+    background-position: center;
+    background-size: cover;
+}
