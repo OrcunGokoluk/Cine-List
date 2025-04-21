@@ -1,0 +1,32 @@
+.movie-search-card{
+    display: flex;
+    margin: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.search-results-text{
+    background-color:#ffbb4f;
+    font-weight: 600;
+    padding: .5rem;
+    padding-left: 2rem;
+}
+.movie-search-card img{
+    width: 7rem;
+}
+.ms-card-detail{
+    padding:1rem;
+    display: flex;
+    flex-direction: column;
+    gap:.4rem;
+}
+.movie-title {
+    font-weight: 600;
+}
+.movie-date {
+    color: grey;
+}
+.placeholder-image{
+    width: 200rem;
+    height: 12rem;
+    background-size: cover;
+    background-position: center;
+}
