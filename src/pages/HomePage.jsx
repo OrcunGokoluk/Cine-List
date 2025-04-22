@@ -6,8 +6,8 @@ import Searchbar from '../components/Searchbar'
 function HomePage() {
   return (
     <>
+    <Searchbar/>
     <section class="welcome-image">
-      <Searchbar/>
       <div class="image-color-filter">
         <h2>Welcome to CineList!</h2>
         <p>Discover your favorite movies and build your archive.
