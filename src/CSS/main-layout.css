@@ -11,6 +11,7 @@ header{
 }
 main{
     position: relative;
+    min-height: 88vh;
 }
 /* Hamburger------------------------------------------------------------------- */
 

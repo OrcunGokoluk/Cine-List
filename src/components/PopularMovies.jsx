@@ -12,6 +12,7 @@ function PopularMovies() {
         .then(data=>{
             setPopular(data.results);
             console.log(data.results)})
+            .catch(console.error("Something Went Wrong!"))
     },[])
 
   return (

@@ -30,3 +30,12 @@
     background-size: cover;
     background-position: center;
 }
+
+.notFound{
+    font-size:large;
+    border-radius: .5rem;
+    background-color: rgb(255, 65, 97);
+    color:white;
+    margin: 1rem;
+    padding: 1rem;
+}
