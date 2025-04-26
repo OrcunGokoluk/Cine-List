@@ -43,7 +43,7 @@ function SearchPage() {
       </form>
       <h2 className='search-results-text'>Search Results</h2>
        {movieData.length<1 ? <h2 className='notFound'>Oops! No movies found. Try checking the spelling or searching for something else.</h2>:""}
-      {movieData ? movieData.map((movie)=> <MovieCard key={movie.id} title={movie.title} image_path={movie.poster_path} date={movie.release_date} overview={movie.overview}/> ):""}
+      {movieData ? movieData.map((movie)=> <MovieCard key={movie.id} id={movie.id} title={movie.title} image_path={movie.poster_path} date={movie.release_date} overview={movie.overview}/> ):""}
     </>
   )
 }

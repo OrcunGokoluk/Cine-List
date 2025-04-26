@@ -20,7 +20,7 @@ function PopularMovies() {
     <section className='popular'>
     <h2>What's Popular</h2>
       <div class="scrolling-wrapper">
-        {popularMovies.map((movie, index)=><PopularMovieCard  key={index} image_path={movie.poster_path} title={movie.title}/>)}
+        {popularMovies.map((movie, index)=><PopularMovieCard  key={index} id={movie.id} image_path={movie.poster_path} title={movie.title}/>)}
     </div>
     </section>
 
