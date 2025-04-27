@@ -7,7 +7,26 @@
     background-color: rgba(0, 0, 0, 0.238);
     height: 30vh;
 }
-.movie-detail-title{
+.detail h2{
     text-align: center;
-    margin-top: 1rem;
+    padding: 1rem;
+}
+.detail{
+    background-color: rgb(35, 35, 35);
+    color:#F4F5F0;
+}
+
+.detail-body{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap:.5rem;
+    padding: 2rem;
+    padding-top: 0;
+}
+.dt-tagline{
+    color: #aaaaaa;
+}
+.dt-overview{
+    line-height: 1.4rem;
 }

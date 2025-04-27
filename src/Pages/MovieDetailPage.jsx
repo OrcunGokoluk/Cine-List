@@ -17,15 +17,27 @@ function MovieDetailPage() {
     useEffect(()=>{
         fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=${API_KEY}`)
         .then(res=>res.json())
-        .then(data=>setMovie(data))
+        .then(data=>{console.log(data)
+          setMovie(data)
+        })
     },[])
 
   return (
     <>
     <section className='movie-background-poster' style={imgStyle}>
-        <div className='movie-background-poster-filter'></div>
+      <div className='movie-background-poster-filter'></div>
     </section>
-      <h2 className='movie-detail-title'>{movie.title}</h2>
+    <section className="detail">
+      <h2>{movie.title}</h2>
+
+      <article className='detail-body'>
+        <p className="dt-tagline">{movie.tagline}</p>
+        <h3>Overview</h3>
+        <p className="dt-overview">{movie.overview}</p>
+      </article>
+
+    </section>
+
     </>
   )
 }
