@@ -40,7 +40,17 @@ function SearchPage() {
         })
         .catch(error=>
           console.error(error))
-    },[query,currentPage])
+    },[query,page])
+
+    function genNewSearchParamString(key, value) {
+      const sp = new URLSearchParams(searchParams)
+      if (value === null) {
+        sp.delete(key)
+      } else {
+        sp.set(key, value)
+      }
+      return `?${sp.toString()}`
+    }
     
   return (
     <>
@@ -58,39 +68,37 @@ function SearchPage() {
           href="#"
         />
       </PaginationItem>
-      <PaginationItem>
-        <PaginationLink
-          href="#"
-          previous
-        />
-      </PaginationItem>
-      <NavLink to={{ page:`?${currentPage}`}}>
+      <NavLink to={genNewSearchParamString("page", Number(currentPage)-1)}>
+          <PaginationItem>
+            <PaginationLink previous/>
+          </PaginationItem>
+      </NavLink>
+      <NavLink to={genNewSearchParamString("page", currentPage)}>
           <PaginationItem>
             <PaginationLink>
             {`${currentPage}`}
             </PaginationLink>
           </PaginationItem>
         </NavLink>
-        <NavLink to={{ page:`?${currentPage+1}`}}>
+        <NavLink to={genNewSearchParamString("page", Number(currentPage)+1)}>
           <PaginationItem>
             <PaginationLink>
-            {`${currentPage+1}`}
+            {`${Number(currentPage)+1}`}
             </PaginationLink>
           </PaginationItem>
         </NavLink>
-        <NavLink to={{ page:`?${currentPage+2}`}}>
+        <NavLink to={genNewSearchParamString("page", Number(currentPage)+2)}>
           <PaginationItem>
             <PaginationLink>
-            {`${currentPage+2}`}
+            {`${Number(currentPage)+2}`}
             </PaginationLink>
           </PaginationItem>
         </NavLink>
-      <PaginationItem>
-        <PaginationLink
-          href="#"
-          next
-        />
-      </PaginationItem>
+        <NavLink to={genNewSearchParamString("page", Number(currentPage)+1)}>
+          <PaginationItem>
+            <PaginationLink next/>
+          </PaginationItem>
+      </NavLink>
       <PaginationItem>
         <PaginationLink
           href="#"
