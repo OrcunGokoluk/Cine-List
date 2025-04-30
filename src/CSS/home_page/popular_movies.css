@@ -15,6 +15,7 @@
     background-position: center;
     background-size: cover;
     background-color: blue;
+    border-radius: .3rem;
 }
 
 .popular-movie-card{
@@ -31,19 +32,22 @@
 }
 .popular-movie-card p{
     margin-top: .5rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bolder;
 }
 .popular{
     padding: 2rem 0;
+    margin-bottom: 0;
 }
 .popular h2{
     font-size: 1.7rem;
+    font-weight: 700;
     margin-left: 2rem;
     margin-bottom: 1.5rem;
+    color: black;
 }
 
-a{
+.popular a{
  text-decoration: none;
- color: #000000;
+ color: #212121cf
 }

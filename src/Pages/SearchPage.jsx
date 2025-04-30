@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams, NavLink } from 'react-router-dom'
 import MovieCard from '../components/MovieCards/MovieCard';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 
 function SearchPage() {
     const [movieData,setMovieData] = useState([]);
     const [searchParams]= useSearchParams();
+
+    const [currentPage, setCurrentPage] = useState(1);
+
     const navigate= useNavigate();
     const query = searchParams.get("query");
+    let page = searchParams.get("page")
     const apiKey = import.meta.env.VITE_TMDB_KEY;
     
 
@@ -18,13 +23,15 @@ function SearchPage() {
     }
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
+
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=${page ? page : currentPage}&include_adult=false`
 
         fetch(url)
         .then(res=>{
           if(!res.ok){
             throw new Error("Error: ", res.status);
           }
+          setCurrentPage(page)
            return res.json()}
         )
 
@@ -33,7 +40,7 @@ function SearchPage() {
         })
         .catch(error=>
           console.error(error))
-    },[query])
+    },[query,currentPage])
     
   return (
     <>
@@ -44,6 +51,53 @@ function SearchPage() {
       <h2 className='search-results-text'>Search Results</h2>
        {movieData.length<1 ? <h2 className='notFound'>Oops! No movies found. Try checking the spelling or searching for something else.</h2>:""}
       {movieData ? movieData.map((movie)=> <MovieCard key={movie.id} id={movie.id} title={movie.title} image_path={movie.poster_path} date={movie.release_date} overview={movie.overview}/> ):""}
+    <Pagination className='pagination-container'>
+      <PaginationItem>
+        <PaginationLink
+          first
+          href="#"
+        />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink
+          href="#"
+          previous
+        />
+      </PaginationItem>
+      <NavLink to={{ page:`?${currentPage}`}}>
+          <PaginationItem>
+            <PaginationLink>
+            {`${currentPage}`}
+            </PaginationLink>
+          </PaginationItem>
+        </NavLink>
+        <NavLink to={{ page:`?${currentPage+1}`}}>
+          <PaginationItem>
+            <PaginationLink>
+            {`${currentPage+1}`}
+            </PaginationLink>
+          </PaginationItem>
+        </NavLink>
+        <NavLink to={{ page:`?${currentPage+2}`}}>
+          <PaginationItem>
+            <PaginationLink>
+            {`${currentPage+2}`}
+            </PaginationLink>
+          </PaginationItem>
+        </NavLink>
+      <PaginationItem>
+        <PaginationLink
+          href="#"
+          next
+        />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink
+          href="#"
+          last
+        />
+      </PaginationItem>
+    </Pagination>
     </>
   )
 }

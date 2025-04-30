@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams, Outlet } from 'react-router-dom'
 import "../CSS/movie_detail_page/movie_detail.css"
 
 function MovieDetailPage() {
@@ -26,17 +26,21 @@ function MovieDetailPage() {
     <>
     <section className='movie-background-poster' style={imgStyle}>
       <div className='movie-background-poster-filter'>
-        <img src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`} className="movie-detail-poster"/>
-    <section className="detail">
-      <h2>{movie.title}</h2>
+          <img src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}/>
+        <section className="detail">
+          <h2>{movie.title}</h2>
+          <article className='detail-body'>
+            <nav>
+              <NavLink to="" end className={({ isActive })=>(isActive?"active-detail-link":"inactive-detail-link")} >Overview</NavLink>
+              <NavLink to="detail" className={({ isActive })=>(isActive?"active-detail-link":"inactive-detail-link")}>Details</NavLink>
+            </nav>
 
-      <article className='detail-body'>
-        <p className="dt-tagline">{movie.tagline}</p>
-        <h3>Overview</h3>
-        <p className="dt-overview">{movie.overview}</p>
-      </article>
+            <div className='content-container'>
+              <Outlet context={{overview:movie.overview, tagline:movie.tagline}}/>
+            </div>
+          </article>
 
-    </section>
+        </section>
       </div>
       
     </section>

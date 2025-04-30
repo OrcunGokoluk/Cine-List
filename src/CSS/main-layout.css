@@ -19,6 +19,7 @@ main{
     display: flex;
     font-size: 2rem;
     color: #e5e5e5;
+    margin-top: -.7rem;
 }
 .hamburger-menu-logo a{
     display: block;
@@ -30,6 +31,7 @@ main{
 /* Account Icon ---------------------------------------------------------------------------- */
 .account-icon{
     font-size: 1.8rem;
+    margin-top: -.7rem;
 }
 .account-icon a, .account-icon a:visited{
     color: #e5e5e5;
@@ -37,13 +39,14 @@ main{
 
 /* Main Logo------------------------------------------------------------------- */
 h1{
+    font-weight: 600;
     font-size: 2.6rem;
 }
 span {
     position: relative;
 }
 
-span:before {
+.spn-logo:before {
     position: absolute;
     content: '';
     height: .2em;
@@ -62,4 +65,9 @@ footer{
     width: 100%;
     color:#e5e5e5;
     padding: 2rem;
+}
+
+footer p {
+    margin:0;
+    font-weight: 500;
 }

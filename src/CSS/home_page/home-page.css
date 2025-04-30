@@ -1,5 +1,5 @@
 .welcome-image{
-    height: 46vh;
+    height: 60vh;
     background-color: antiquewhite;
     background-image:url("../../public/images/cinema.jpg");
     background-position: center;
@@ -11,20 +11,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 46vh;
+    height: 60vh;
     width: 100%;
-    background-color: rgba(3, 0, 59, 0.735);
+    background-color: rgba(0, 4, 42, 0.725);
     color: 	#FFF5EE;
     padding: 1.7rem;
 }
 
 .image-color-filter h2
 {
-    font-size: 2.3rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
 }
 .image-color-filter p{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 450;
     line-height: 2rem;
 }
