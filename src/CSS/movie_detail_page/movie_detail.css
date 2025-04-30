@@ -1,20 +1,37 @@
 .movie-background-poster{
     width: 100%;
-    height: 30vh;
     background-size: cover;
+    background-position:center;
 }
 .movie-background-poster-filter{
-    background-color: rgba(0, 0, 0, 0.238);
-    height: 30vh;
+    display:flex;
+    gap:3rem;
+    flex-direction:column;
+    align-items:center;
+    justify-content:start;
+    padding:1.5rem;
+    background-color: rgba(0, 4, 42, 0.81);
+}
+.movie-background-poster-filter img{
+    margin-top:3rem;
+    border-radius:.3rem;
 }
 .detail h2{
+    font-size:2rem;
     text-align: center;
     padding: 1rem;
+    margin-bottom:1rem;
+}
+.detail h3{
+    font-size:1.5rem;
+    margin-bottom:.4rem;
+    margin-top:.4rem;
 }
 .detail{
-    background-color: rgb(35, 35, 35);
+    border-radius:1rem;
     color:#F4F5F0;
 }
+
 
 .detail-body{
     display: flex;
@@ -25,8 +42,40 @@
     padding-top: 0;
 }
 .dt-tagline{
-    color: #aaaaaa;
+    font-size:1.1rem;
+    color:rgb(208, 208, 208);
 }
 .dt-overview{
-    line-height: 1.4rem;
+    font-size:1.1rem;
+    line-height: 1.5rem;
+}
+
+.movie-detail-poster{
+    width:15rem;
+}
+
+@media (min-width: 800px){
+    .movie-background-poster-filter{
+        display:flex;
+        flex-direction:row;
+        padding:5rem;
+    }
+    .movie-detail-poster{
+        width:18rem;
+    }
+    .detail h2{
+        font-size:3rem;
+        padding-left:2rem;
+        text-align:start;
+    }
+    .detail h3{
+        font-size:1.8rem;
+    }
+    .dt-tagline{
+        font-size:1.3rem;
+    }
+    .dt-overview{
+        font-size:1.5rem;
+        line-height: 1.8rem;
+    }
 }

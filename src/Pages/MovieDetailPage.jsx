@@ -25,8 +25,8 @@ function MovieDetailPage() {
   return (
     <>
     <section className='movie-background-poster' style={imgStyle}>
-      <div className='movie-background-poster-filter'></div>
-    </section>
+      <div className='movie-background-poster-filter'>
+        <img src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`} className="movie-detail-poster"/>
     <section className="detail">
       <h2>{movie.title}</h2>
 
@@ -37,6 +37,10 @@ function MovieDetailPage() {
       </article>
 
     </section>
+      </div>
+      
+    </section>
+
 
     </>
   )
