@@ -49,7 +49,7 @@ function SearchPage() {
 
     const incrementPages = useMemo(()=>{
       const pg = [];
-      for(let a = Number(currentPage)+1; a<Number(currentPage)+5; a++){
+      for(let a = Number(currentPage)+1; a<Number(currentPage)+4; a++){
         pg.push(a)
         if(a===totalPages){
           break;
@@ -60,7 +60,7 @@ function SearchPage() {
 
     const decrementPages = useMemo(()=>{
       const pg = [];
-      for(let a = Number(currentPage)-1; a>Number(currentPage)-2; a--){
+      for(let a = Number(currentPage)-1; a>Number(currentPage)-3; a--){
         pg.push(a)
         if(a===1){
           break;
@@ -104,7 +104,7 @@ function SearchPage() {
         {  Number(currentPage)-1<=0 ? "":
       <>
 
-        {/* Decreasers-------------------------------------------------------------*/}
+        {/* Decreasers*/}
           {/* << */}
         <NavLink to={genNewSearchParamString("page", "1")}>
           <PaginationItem>
@@ -162,8 +162,8 @@ function SearchPage() {
             </PaginationLink>
           </PaginationItem>
         </NavLink>
-
-          {/* Increasers --------------------------------------------------------------------*/}
+        {/* ------------------------------------------------------------------------------ */}
+          {/* Increasers*/}
           {/* + */}
         {
         Number(currentPage)+1>totalPages?"":
