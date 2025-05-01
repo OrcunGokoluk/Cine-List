@@ -31,16 +31,19 @@ function SearchPage() {
           if(!res.ok){
             throw new Error("Error: ", res.status);
           }
-          setCurrentPage(page)
            return res.json()}
         )
 
-        .then(data=>{setMovieData(data.results)
+        .then(data=>{
+          if (page) {
+            setCurrentPage(page);
+          }
+          setMovieData(data.results)
           console.log(data.results)
         })
         .catch(error=>
           console.error(error))
-    },[query,page])
+    },[query, page])
 
     function genNewSearchParamString(key, value) {
       const sp = new URLSearchParams(searchParams)

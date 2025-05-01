@@ -56,7 +56,7 @@
 }
 .detail-body nav{
     display: flex;
-    gap:2rem;
+    gap:.5rem;
 }
 .detail-body nav a{
     background-color: #14213D;
