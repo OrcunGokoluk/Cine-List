@@ -63,9 +63,21 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
     font-weight: 600;
 }
 .pagination-container a{
-    font-size: 1.3rem;
+    font-size: 0.8rem;
+}
+.pagination-button{
+    color:#14213D !important;
+}
+.current-page{
+    background-color: #14213D;
+    color:white
+}
+.current-page:hover{
+    background-color: #14213D;
+    color:white
 }

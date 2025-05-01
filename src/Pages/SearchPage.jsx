@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import React, { useEffect, useMemo, useState } from 'react'
+import { FaMagnifyingGlass, FaPagelines } from "react-icons/fa6";
 import { useNavigate, useSearchParams, NavLink } from 'react-router-dom'
 import MovieCard from '../components/MovieCards/MovieCard';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { PiGameControllerFill } from 'react-icons/pi';
 
 
 function SearchPage() {
@@ -14,7 +15,6 @@ function SearchPage() {
 
   //Params
     const [searchParams]= useSearchParams();
-
 
     const navigate= useNavigate();
     const query = searchParams.get("query");
@@ -45,7 +45,29 @@ function SearchPage() {
           console.log(data)
         }).catch(error=>
           console.error(error))
-    },[query, page])
+    },[query,page])
+
+    const incrementPages = useMemo(()=>{
+      const pg = [];
+      for(let a = Number(currentPage)+1; a<Number(currentPage)+5; a++){
+        pg.push(a)
+        if(a===totalPages){
+          break;
+        }
+      }
+      return pg;
+    },[currentPage,totalPages])
+
+    const decrementPages = useMemo(()=>{
+      const pg = [];
+      for(let a = Number(currentPage)-1; a>Number(currentPage)-2; a--){
+        pg.push(a)
+        if(a===1){
+          break;
+        }
+      }
+      return pg.reverse();
+    },[currentPage,totalPages])
 
     function genNewSearchParamString(key, value) {
       const sp = new URLSearchParams(searchParams)
@@ -56,6 +78,8 @@ function SearchPage() {
       }
       return `?${sp.toString()}`
     }
+
+    
     
   return (
     <>
@@ -76,66 +100,107 @@ function SearchPage() {
       {movieData ? movieData.map((movie)=> <MovieCard key={movie.id} id={movie.id} title={movie.title} image_path={movie.poster_path} date={movie.release_date} overview={movie.overview}/> ):""}
 
     {/*Pagination */}
-
       <Pagination className='pagination-container'>
+        {  Number(currentPage)-1<=0 ? "":
+      <>
 
-        {/* << */}
-      <NavLink to={genNewSearchParamString("page", "1")}>
-        <PaginationItem>
-          <PaginationLink
-            first
-            href="#"
-          />
-        </PaginationItem>
-      </NavLink>
-        {/* < */}
-        <NavLink to={genNewSearchParamString("page", Number(currentPage)-1)}>
-            <PaginationItem>
-              <PaginationLink previous/>
-            </PaginationItem>
+        {/* Decreasers-------------------------------------------------------------*/}
+          {/* << */}
+        <NavLink to={genNewSearchParamString("page", "1")}>
+          <PaginationItem>
+            <PaginationLink
+            className="pagination-button"
+              first
+              href="#"
+            />
+          </PaginationItem>
         </NavLink>
-        {/* - */}
+        
+          {/* < */}
         <NavLink to={genNewSearchParamString("page", Number(currentPage)-1)}>
-            <PaginationItem>
-              <PaginationLink>
-              {`${currentPage}`}
-              </PaginationLink>
-            </PaginationItem>
-          </NavLink>
-        {/* current */}
-          <NavLink  to={genNewSearchParamString("page", currentPage)}>
-            <PaginationItem>
-              <PaginationLink>
-              {`${Number(currentPage)+1}`}
-              </PaginationLink>
-            </PaginationItem>
-          </NavLink>
-        {/* + */}
-          <NavLink to={genNewSearchParamString("page", Number(currentPage)+2)}>
-            <PaginationItem>
-              <PaginationLink>
-              {`${Number(currentPage)+2}`}
-              </PaginationLink>
-            </PaginationItem>
-          </NavLink>
-        {/* > */}
-          <NavLink to={genNewSearchParamString("page", Number(currentPage)+1)}>
-              <PaginationItem>
-                <PaginationLink next/>
-              </PaginationItem>
-          </NavLink>
-        {/* >> */}
-          <NavLink to={genNewSearchParamString("page", totalPages)}>
             <PaginationItem>
               <PaginationLink
-                href="#"
-                last
-              />
+              className="pagination-button"
+                previous/>
             </PaginationItem>
-          </NavLink>
+        </NavLink>
+
+          {/* - */}
+            {
+        currentPage==totalPages ?
+        <NavLink to={genNewSearchParamString("page", Number(currentPage)-2)}>
+            <PaginationItem>
+              <PaginationLink
+              className="pagination-button">
+              {`${currentPage-2}`}
+              </PaginationLink>
+            </PaginationItem>
+          </NavLink> :""
+            }
+          {/* Decrememt map */}
+
+          { 
+        decrementPages.map(pageNm =>
+        <NavLink to={genNewSearchParamString("page", pageNm)}>
+          <PaginationItem>
+            <PaginationLink
+            className="pagination-button">
+            {`${pageNm}`}
+            </PaginationLink>
+          </PaginationItem>
+        </NavLink>)
+          }
+          </> 
+
+            }
+        {/* ------------------------------------------------------------------------------ */}
+          {/* current */}
+        <NavLink  to={genNewSearchParamString("page", currentPage )}>
+          <PaginationItem>
+            <PaginationLink   className='current-page'>
+            {`${currentPage}`}
+            </PaginationLink>
+          </PaginationItem>
+        </NavLink>
+
+          {/* Increasers --------------------------------------------------------------------*/}
+          {/* + */}
+        {
+        Number(currentPage)+1>totalPages?"":
+        <>
+        {/* increment map */}
+        {incrementPages ? incrementPages.map(a=>
+        <NavLink to={genNewSearchParamString("page", a)}>
+          <PaginationItem>
+            <PaginationLink
+            className="pagination-button">
+            {`${a}`}
+            </PaginationLink>
+          </PaginationItem>
+        </NavLink>):""}
+        {/* > */} 
+        <NavLink to={genNewSearchParamString("page", Number(currentPage)+1)}>
+            <PaginationItem>
+              <PaginationLink
+              className="pagination-button"
+                next/>
+            </PaginationItem>
+        </NavLink>
+        {/* >> */}
+        <NavLink to={genNewSearchParamString("page", totalPages)}>
+          <PaginationItem>
+            <PaginationLink
+              href="#"
+              className="pagination-button"
+              last
+            />
+          </PaginationItem>
+        </NavLink></>}
       </Pagination>
-      </>
+    </>
+
   )
+
 }
 
 export default SearchPage
