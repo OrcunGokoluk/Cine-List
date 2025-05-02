@@ -4,7 +4,7 @@ CineList is a user-friendly web application that allows users to discover and br
 
 ## Demo
 
-[https://cine-list-app.netlify.app/](https://cine-list-app.netlify.app/)
+[ogk-cinelist.netlify.app](ogk-cinelist.netlify.app)
 
 ## Features
 
