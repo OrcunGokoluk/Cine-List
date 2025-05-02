@@ -134,19 +134,6 @@ console.log("rendered")
             </PaginationItem>
         </NavLink>
 
-          {/* - */}
-            {
-        currentPage==totalPages ?"":
-        <NavLink to={genNewSearchParamString("currentPage", Number(currentPage)-2)}>
-            <PaginationItem>
-              <PaginationLink
-              tag="span"
-              className="pagination-button">
-              {`${currentPage-2}`}
-              </PaginationLink>
-            </PaginationItem>
-          </NavLink>
-            }
           {/* Decrememt map */}
 
           { 

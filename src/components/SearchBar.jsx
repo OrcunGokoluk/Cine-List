@@ -7,7 +7,7 @@ function Searchbar() {
     
     function getData(formData){
         const movieName =formData.get("searchbar").trim()
-            navigate(`search?query=${movieName}`)        
+            navigate(`search?query=${movieName}&currentPage=1`)        
           }
 
   return (
