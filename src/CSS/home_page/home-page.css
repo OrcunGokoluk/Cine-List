@@ -1,7 +1,7 @@
 .welcome-image{
     height: 60vh;
     background-color: antiquewhite;
-    background-image:url("../../public/images/cinema.jpg");
+    background-image:url("../../images/cinema.jpg");
     background-position: center;
     background-size: cover;
     z-index: -1;
