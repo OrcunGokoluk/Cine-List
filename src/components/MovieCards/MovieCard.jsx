@@ -10,7 +10,7 @@ function MovieCard({id,image_path, title, date ,overview}) {
     <Link to={`/movie/${id}`}>
       <div className='movie-search-card'>
            { image_path ? <img src={`https://image.tmdb.org/t/p/w780${image_path}`} alt={title} /> :
-            <img className='placeholder-image' src="../../..images/movie_poster.png" alt={title}/>}
+            <img className='placeholder-image' src="../../../images/movie_poster.png" alt={title}/>}
             <div className='ms-card-detail'>
                 <p className='movie-title'>{title.slice(0,30)}{title.length>30 ? "...":""}</p>
                 <p className='movie-date'>{date}</p>
