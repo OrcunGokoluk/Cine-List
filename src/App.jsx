@@ -2,9 +2,9 @@ import React from 'react'
 import './CSS/App.css'
 import MainLayout from './Layouts/MainLayout'
 import {Routes, Route} from "react-router-dom"
-import HomePage from './Pages/HomePage'
-import SearchPage from './Pages/SearchPage'
-import MovieDetailPage from './Pages/MovieDetailPage'
+import HomePage from './pages/HomePage'
+import SearchPage from './pages/SearchPage'
+import MovieDetailPage from './pages/MovieDetailPage'
 import Overview from './components/movie_detail/Overview'
 import Details from './components/movie_detail/Details'
 
