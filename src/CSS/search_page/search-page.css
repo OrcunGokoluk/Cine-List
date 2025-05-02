@@ -6,6 +6,7 @@
     border-radius: .3rem;
 }
 .search-results-text{
+    font-size: medium;
     background-color:#ffbb4f;
     font-weight: 600;
     padding: .5rem;
@@ -68,10 +69,11 @@ a{
     font-weight: 600;
 }
 .pagination-container a{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .pagination-button{
     color:#14213D !important;
+    padding:.4rem;
 }
 .current-page{
     background-color: #14213D;
@@ -80,4 +82,9 @@ a{
 .current-page:hover{
     background-color: #14213D;
     color:white
+}
+@media (min-width:800px){
+    .pagination-button{
+        padding:.4rem;
+    }
 }

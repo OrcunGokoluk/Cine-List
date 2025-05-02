@@ -31,8 +31,8 @@ function MovieDetailPage() {
           <h2>{movie.title}</h2>
           <article className='detail-body'>
             <nav>
-              <NavLink to="" end className={({ isActive })=>(isActive?"active-detail-link":"inactive-detail-link")} >Overview</NavLink>
-              <NavLink to="detail" className={({ isActive })=>(isActive?"active-detail-link":"inactive-detail-link")}>Details</NavLink>
+              <NavLink to="" end className={({ isActive })=>(isActive?"active-detail-link":"inactive-detail-link")} replace>Overview</NavLink>
+              <NavLink to="detail" className={({ isActive })=>(isActive?"active-detail-link":"inactive-detail-link")}replace>Details</NavLink>
             </nav>
 
             <div className='content-container'>

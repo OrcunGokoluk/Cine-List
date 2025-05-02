@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useRef } from 'react'
 import { FaMagnifyingGlass, FaPagelines } from "react-icons/fa6";
 import { useNavigate, useSearchParams, NavLink } from 'react-router-dom'
 import MovieCard from '../components/MovieCards/MovieCard';
@@ -10,7 +10,6 @@ function SearchPage() {
 
   //States
     const [movieData,setMovieData] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages]=useState(0);
 
   //Params
@@ -18,9 +17,12 @@ function SearchPage() {
 
     const navigate= useNavigate();
     const query = searchParams.get("query");
-    let page = searchParams.get("page")
+    const currentPage = searchParams.get("currentPage")
     const apiKey = import.meta.env.VITE_TMDB_KEY;
+
+    const prevQueryRef = useRef(query);
     
+console.log("rendered")
 
     async function getData(formData){
       const data = formData.get("searchbar");
@@ -28,7 +30,13 @@ function SearchPage() {
     }
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=${page ? page : currentPage}&include_adult=false`
+        if (query && Number(currentPage) !== 1 && query !== prevQueryRef.current) {
+          navigate(genNewSearchParamString("currentPage","1"), {replace: true})
+        }
+    },[query])
+
+    useEffect(()=>{
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=${currentPage ? currentPage : "1"}&include_adult=false`
 
         fetch(url)
         .then(res=>{
@@ -37,15 +45,14 @@ function SearchPage() {
           }
            return res.json()}
         ).then(data=>{
-          if (page) {
-            setCurrentPage(page);
-          }
           setMovieData(data.results)
           setTotalPages(data.total_pages)
           console.log(data)
         }).catch(error=>
           console.error(error))
-    },[query,page])
+    },[query,currentPage])
+
+
 
     const incrementPages = useMemo(()=>{
       const pg = [];
@@ -106,9 +113,10 @@ function SearchPage() {
 
         {/* Decreasers*/}
           {/* << */}
-        <NavLink to={genNewSearchParamString("page", "1")}>
+        <NavLink to={genNewSearchParamString("currentPage", "1")}>
           <PaginationItem>
             <PaginationLink
+            tag="span"
             className="pagination-button"
               first
               href="#"
@@ -117,9 +125,10 @@ function SearchPage() {
         </NavLink>
         
           {/* < */}
-        <NavLink to={genNewSearchParamString("page", Number(currentPage)-1)}>
+        <NavLink to={genNewSearchParamString("currentPage", Number(currentPage)-1)}>
             <PaginationItem>
               <PaginationLink
+              tag="span"
               className="pagination-button"
                 previous/>
             </PaginationItem>
@@ -127,23 +136,25 @@ function SearchPage() {
 
           {/* - */}
             {
-        currentPage==totalPages ?
-        <NavLink to={genNewSearchParamString("page", Number(currentPage)-2)}>
+        currentPage==totalPages ?"":
+        <NavLink to={genNewSearchParamString("currentPage", Number(currentPage)-2)}>
             <PaginationItem>
               <PaginationLink
+              tag="span"
               className="pagination-button">
               {`${currentPage-2}`}
               </PaginationLink>
             </PaginationItem>
-          </NavLink> :""
+          </NavLink>
             }
           {/* Decrememt map */}
 
           { 
         decrementPages.map(pageNm =>
-        <NavLink to={genNewSearchParamString("page", pageNm)}>
+        <NavLink to={genNewSearchParamString("currentPage", pageNm)}>
           <PaginationItem>
             <PaginationLink
+            tag="span"
             className="pagination-button">
             {`${pageNm}`}
             </PaginationLink>
@@ -155,9 +166,11 @@ function SearchPage() {
             }
         {/* ------------------------------------------------------------------------------ */}
           {/* current */}
-        <NavLink  to={genNewSearchParamString("page", currentPage )}>
+        <NavLink  to={genNewSearchParamString("currentPage", currentPage )}>
           <PaginationItem>
-            <PaginationLink   className='current-page'>
+            <PaginationLink 
+            tag="span"
+            className='current-page'>
             {`${currentPage}`}
             </PaginationLink>
           </PaginationItem>
@@ -170,26 +183,29 @@ function SearchPage() {
         <>
         {/* increment map */}
         {incrementPages ? incrementPages.map(a=>
-        <NavLink to={genNewSearchParamString("page", a)}>
+        <NavLink to={genNewSearchParamString("currentPage", a)}>
           <PaginationItem>
             <PaginationLink
+            tag="span"
             className="pagination-button">
             {`${a}`}
             </PaginationLink>
           </PaginationItem>
         </NavLink>):""}
         {/* > */} 
-        <NavLink to={genNewSearchParamString("page", Number(currentPage)+1)}>
+        <NavLink to={genNewSearchParamString("currentPage", Number(currentPage)+1)}>
             <PaginationItem>
               <PaginationLink
+              tag="span"
               className="pagination-button"
                 next/>
             </PaginationItem>
         </NavLink>
         {/* >> */}
-        <NavLink to={genNewSearchParamString("page", totalPages)}>
+        <NavLink to={genNewSearchParamString("currentPage", totalPages)}>
           <PaginationItem>
             <PaginationLink
+              tag="span"
               href="#"
               className="pagination-button"
               last
