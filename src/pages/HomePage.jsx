@@ -1,7 +1,7 @@
 import React from 'react'
 import "../CSS/home_page/home-page.css"
 import PopularMovies from '../components/PopularMovies'
-import Searchbar from '../components/Searchbar'
+import Searchbar from '../components/SearchBar'
 
 function HomePage() {
   return (
