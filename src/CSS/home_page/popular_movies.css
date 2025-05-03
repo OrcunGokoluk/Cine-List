@@ -3,48 +3,49 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    overflow-x:scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
 /* Movie Card Component-------------------------------------------------------------------- */
 .movie-image{
-    width: 13rem;
-    height: 50vh;
+    width: 11rem;
+    height: 39vh;
     background-position: center;
     background-size: cover;
-    background-color: blue;
     border-radius: .3rem;
 }
 
 .popular-movie-card{
     display: flex;
     flex-direction:column ;
-    width: 11rem;
     align-items: center;
     text-align: center;
-    margin-left:3rem;
-    padding:.5rem;
+    margin-left:.1rem;
+    padding: .5rem;
+    padding-top:.5rem;
+    transition: ease .1s;
 }
 .popular-movie-card:hover{
-    padding: 0;
+    padding-top: 0;
 }
 .popular-movie-card p{
     margin-top: .5rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: bolder;
 }
 .popular{
     padding: 2rem 0;
+    margin-left: .9rem;
     margin-bottom: 0;
+
 }
 .popular h2{
     font-size: 1.7rem;
     font-weight: 700;
-    margin-left: 2rem;
+    margin-left:.8rem;
     margin-bottom: 1.5rem;
-    color: black;
+    color: #212121;
 }
 
 .popular a{

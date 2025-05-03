@@ -1,5 +1,5 @@
 .welcome-image{
-    height: 60vh;
+    height: 70vh;
     background-color: antiquewhite;
     background-image:url("../../images/cinema.jpg");
     background-position: center;
@@ -11,9 +11,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 60vh;
+    height: 70vh;
     width: 100%;
-    background-color: rgba(0, 4, 42, 0.725);
+    background-color: rgba(0, 6, 59, 0.823);
     color: 	#FFF5EE;
     padding: 1.7rem;
 }
@@ -21,12 +21,13 @@
 .image-color-filter h2
 {
     font-size: 2.8rem;
-    margin-bottom: 1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
 }
 .image-color-filter p{
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     font-weight: 450;
-    line-height: 2rem;
+    line-height: 2.3rem;
 }
 /* Searchbar--------------------------------------------------------------- */
 .input-wrapper{
@@ -47,4 +48,12 @@
     font-size: 1.1rem;
     margin-left: 1rem;
     top:20%;
+}
+
+.image-color-filter .searchbar{
+    border-radius: 1rem;
+}
+
+.image-color-filter p{
+    margin-bottom: 1.8rem;
 }

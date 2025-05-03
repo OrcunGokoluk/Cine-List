@@ -14,7 +14,7 @@ function PopularMovieCard({id, image_path=null, title}) {
       <Link to={`movie/${id}`}>
         <section className='popular-movie-card'>
           <div className='movie-image' style={imageStyle}></div>
-          <p>{title.length>18? title.slice(0,18)+"...":title}</p>
+          <p>{title.length>18? title.slice(0,15)+"...":title}</p>
         </section></Link>:""}
 
     </>

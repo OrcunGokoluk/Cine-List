@@ -9,9 +9,10 @@ function HomePage() {
     <Searchbar/>
     <section class="welcome-image">
       <div class="image-color-filter">
-        <h2>Welcome to CineList!</h2>
+        <h2>Welcome.</h2>
         <p>Discover your favorite movies and build your archive.
-        Your movie experience is now more organized! </p>
+        Your movie experience is now more organized! Explore now.</p>
+        <Searchbar className="main-menu-search"/>
       </div>
     </section>
     <PopularMovies/>
