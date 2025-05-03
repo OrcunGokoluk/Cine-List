@@ -1,8 +1,8 @@
 .welcome-image{
-    height: 70vh;
+    height: 75vh;
     background-color: antiquewhite;
     background-image:url("../../images/cinema.jpg");
-    background-position: center;
+    background-position:center -5rem;
     background-size: cover;
     z-index: -1;
 }
@@ -11,9 +11,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 70vh;
+    height: 75vh;
     width: 100%;
-    background-color: rgba(0, 6, 59, 0.823);
+    background-color: rgba(0, 6, 59, 0.729);
     color: 	#FFF5EE;
     padding: 1.7rem;
 }
