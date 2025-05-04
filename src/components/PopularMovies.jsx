@@ -7,7 +7,7 @@ function PopularMovies() {
     const API_KEY = import.meta.env.VITE_TMDB_KEY;
 
     useEffect(()=>{
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=1`)
         .then(res=>res.json())
         .then(data=>{
             setPopular(data.results);

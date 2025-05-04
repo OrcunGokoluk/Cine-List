@@ -3,7 +3,6 @@ import { FaMagnifyingGlass, FaPagelines } from "react-icons/fa6";
 import { useNavigate, useSearchParams, NavLink } from 'react-router-dom'
 import MovieCard from '../components/MovieCards/MovieCard';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { PiGameControllerFill } from 'react-icons/pi';
 
 
 function SearchPage() {
