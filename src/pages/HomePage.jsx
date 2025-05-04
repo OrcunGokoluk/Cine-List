@@ -9,10 +9,12 @@ function HomePage() {
     <Searchbar/>
     <section class="welcome-image">
       <div class="image-color-filter">
-        <h2>Welcome.</h2>
-        <p>Discover your favorite movies and build your archive.
-        Your movie experience is now more organized! Explore now.</p>
-        <Searchbar className="main-menu-search"/>
+        <div className='welcome-content-body'>
+          <h2>Welcome.</h2>
+          <p>Discover your favorite movies and build your archive.
+          Your movie experience is now more organized! Explore now.</p>
+          <Searchbar className="main-menu-search"/>
+        </div>
       </div>
     </section>
     <PopularMovies/>

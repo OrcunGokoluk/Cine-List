@@ -10,10 +10,9 @@
 /* Movie Card Component-------------------------------------------------------------------- */
 .movie-image{
     width: 11rem;
-    height: 39vh;
     background-position: center;
     background-size: cover;
-    border-radius: .3rem;
+    border-radius: .5rem;
 }
 
 .popular-movie-card{
@@ -51,4 +50,12 @@
 .popular a{
  text-decoration: none;
  color: #212121cf
+}
+.side-blur{
+    pointer-events: none;
+    position:absolute;
+    right:0;
+    height: 17rem;
+    width: 12rem;
+    background: linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgba(214, 214, 214, 0) 50%,rgba(214, 214, 214, 0) 75%, rgba(255, 255, 255, 0.865) 100%);
 }

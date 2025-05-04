@@ -2,4 +2,9 @@
 
 body{
  font-family: 'Montserrat', sans-serif;
+ background-color: #fefefefe;
+}
+
+input{
+    background-color:#fefefefe ;
 }
