@@ -7,7 +7,7 @@ function MovieCard({id,image_path, title, date ,overview}) {
 
   return (
     <>
-    <Link to={`/movie/${id}`}>
+    <Link to={`/movie-detail/${id}`}>
       <div className='movie-search-card'>
            { image_path ? <img src={`https://image.tmdb.org/t/p/w780${image_path}`} alt={title} /> :
             <img className='placeholder-image' src="../../../images/movie_poster.png" alt={title}/>}

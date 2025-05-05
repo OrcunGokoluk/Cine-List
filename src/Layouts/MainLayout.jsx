@@ -28,31 +28,31 @@ function MainLayout() {
          <h2>Movies</h2>
          <ul className='navigation-list'>
             <li>
-              <NavLink>Popular</NavLink>
+              <NavLink to="movie">Popular</NavLink>
             </li>
             <li>
-              <NavLink>Top Rated</NavLink>
+              <NavLink to="movie/top-rated">Top Rated</NavLink>
             </li>
             <li>
-              <NavLink>Upcoming</NavLink>
+              <NavLink to="movie/upcoming">Upcoming</NavLink>
             </li>
             <li>
-              <NavLink>New Playing</NavLink>
+              <NavLink to="movie/new-playing">New Playing</NavLink>
             </li>
          </ul>
          <h2>TV Shows</h2>
          <ul className='navigation-list'>
             <li>
-              <NavLink>Popular</NavLink>
+              <NavLink to="tv">Popular</NavLink>
             </li>
             <li>
-              <NavLink>Top Rated</NavLink>
+              <NavLink to="tv/top-rated">Top Rated</NavLink>
             </li>
             <li>
-              <NavLink>Upcoming</NavLink>
+              <NavLink to="tv/upcoming">Upcoming</NavLink>
             </li>
             <li>
-              <NavLink>New Playing</NavLink>
+              <NavLink to="tv/airing-today">Airing Today</NavLink>
             </li>
          </ul>
         </nav>
