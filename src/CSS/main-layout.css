@@ -106,7 +106,74 @@ footer p {
 .navigation-list a, .navigation-list a:visited{
     color:#e4e4e4;
 }
+.nav-movie-container, .nav-tv-container{
+    display: none;
+}
 .close-menu{
     left:-20rem;
     transition: ease .1s;
 }
+.hide-movie-categories, .hide-tv-categories{
+    display:none
+}
+.desktop-navigation h2 {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .nav-tv-container, .nav-movie-container{
+        display: block;
+        font-size: 1.2rem;
+        height: 100%;
+    }
+    .hamburger-menu-logo{
+        display: none;
+    }
+    .desktop-navigation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:1rem;
+    }
+    .spn-logo{
+        margin-left: 1rem;
+    }
+    .main-menu-categories{
+        display: flex;
+        margin-left: 2rem;
+        gap:.7rem;
+        cursor: pointer;
+        height: 100%;
+    }
+    .navigation-list{
+        font-size: 0.9rem;
+        border-radius:.5rem;
+        position: absolute;
+        top: 3.8rem;
+        background-color: #14213D;
+        z-index: 2;
+    }
+    .navigation-list a{
+        padding: .7rem;
+        padding-right: 2rem;
+        padding-left: 0;
+        display: block;
+        width: 100%;
+    }
+    .navigation-list li{
+        border-bottom:1px solid #fca311;
+        margin-bottom: 0;
+    }
+    .navigation-list li:nth-last-child(1){
+        border-bottom:none;
+    }
+    .navigation-list a:hover{
+        background-color: #223251;
+    }
+    .navigation-list li:nth-last-child(1) a:hover{
+        border-radius: 0 0 .5rem 0;
+    }
+    .navigation-list li:nth-child(1) a:hover{
+        border-radius: 0 .5rem 0 0;
+    }
+  }
