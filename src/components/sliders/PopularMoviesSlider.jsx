@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import "../CSS/home_page/popular_movies.css"
-import PopularMovieCard from "../components/MovieCards/PopularMovieCard"
-function PopularMovies() {
+import "../../CSS/home_page/popular_movies.css"
+import PopularMovieCard from "../MovieCards/PopularMovieCard"
+
+function PopularMoviesSlider() {
     const [popularMovies ,setPopular] = useState([])
 
     const API_KEY = import.meta.env.VITE_TMDB_KEY;
@@ -28,4 +29,4 @@ function PopularMovies() {
   )
 }
 
-export default PopularMovies
+export default PopularMoviesSlider

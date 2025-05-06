@@ -10,24 +10,19 @@ function SearchPage() {
   //States
     const [movieData,setMovieData] = useState([]);
     const [totalPages, setTotalPages]=useState(0);
-
   //Params
     const [searchParams]= useSearchParams();
-
+  //navigate
     const navigate= useNavigate();
+  //seach params
     const query = searchParams.get("query");
     const currentPage = searchParams.get("currentPage")
+  //api key
     const apiKey = import.meta.env.VITE_TMDB_KEY;
-
-    const prevQueryRef = useRef(query);
-    
-console.log("rendered")
-
-    async function getData(formData){
-      const data = formData.get("searchbar");
-      navigate(`?query=${data}`)
-    }
-
+  //ref
+    const prevQueryRef = useRef(query); 
+  
+    //side effects
     useEffect(()=>{
         if (query && Number(currentPage) !== 1 && query !== prevQueryRef.current) {
           navigate(genNewSearchParamString("currentPage","1"), {replace: true})
@@ -52,7 +47,7 @@ console.log("rendered")
     },[query,currentPage])
 
 
-
+    //memos
     const incrementPages = useMemo(()=>{
       const pg = [];
       for(let a = Number(currentPage)+1; a<Number(currentPage)+4; a++){
@@ -75,6 +70,13 @@ console.log("rendered")
       return pg.reverse();
     },[currentPage,totalPages])
 
+  //getting data from the form
+  function getData(formData){
+    const data = formData.get("searchbar");
+    navigate(`?query=${data}`)
+  }
+
+  //merge search params function
     function genNewSearchParamString(key, value) {
       const sp = new URLSearchParams(searchParams)
       if (value === null) {
@@ -89,8 +91,8 @@ console.log("rendered")
     
   return (
     <>
-    {/* Form */}
 
+    {/* Form */}
       <form action={getData} className='input-wrapper'>
           <button  className='search-icon'><FaMagnifyingGlass  /></button>
           <input className='searchbar' type="text" name="searchbar" placeholder='Search'/>
@@ -98,14 +100,12 @@ console.log("rendered")
       <h2 className='search-results-text'>Search Results</h2>
 
     {/*Not Found */}
-
        {movieData.length<1 ? <h2 className='notFound'>Oops! No movies found. Try checking the spelling or searching for something else.</h2>:""}
 
     {/*Movie Cards */}
-
       {movieData ? movieData.map((movie)=> <MovieCard key={movie.id} id={movie.id} title={movie.title} image_path={movie.poster_path} date={movie.release_date} overview={movie.overview}/> ):""}
 
-    {/*Pagination */}
+    {/*Pagination ------------------------------------------------------------------------------------------*/}
       <Pagination className='pagination-container'>
         {  Number(currentPage)-1<=0 ? "":
       <>

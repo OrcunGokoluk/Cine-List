@@ -18,7 +18,6 @@ function HamburgerMenu() {
         </div>
       </div>
 
-      {/* HamburgerMenu */}
       <nav className={`mobile-navigation ${toggleMenu ? "" : "close-menu"}`}>
         <div
           className="menu-arrow-icon"

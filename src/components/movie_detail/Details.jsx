@@ -1,11 +1,11 @@
 import React from 'react'
-import { useOutletContext } from 'react-router-dom'
+// import { useOutletContext } from 'react-router-dom'
 
 function Details() {
-    const movie = useOutletContext()
+    // const movie = useOutletContext()
   return (
     <>
-      <p>{movie.tagline}</p>
+      <p>Still under development.</p>
     </>
   )
 }

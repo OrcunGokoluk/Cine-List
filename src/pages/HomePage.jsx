@@ -1,6 +1,6 @@
 import React from 'react'
 import "../CSS/home_page/home-page.css"
-import PopularMovies from '../components/PopularMovies'
+import PopularMoviesSlider from '../components/sliders/PopularMoviesSlider'
 import Searchbar from '../components/SearchBar'
 
 function HomePage() {
@@ -17,7 +17,7 @@ function HomePage() {
         </div>
       </div>
     </section>
-    <PopularMovies/>
+    <PopularMoviesSlider/>
     </>
   )
 }

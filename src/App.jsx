@@ -7,6 +7,7 @@ import SearchPage from './pages/SearchPage'
 import MovieDetailPage from './pages/MovieDetailPage'
 import Overview from './components/movie_detail/Overview'
 import Details from './components/movie_detail/Details'
+import PopularMovies from './pages/PopularMovies'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<Overview/>}></Route>
           <Route path="detail" element={<Details/>}></Route>
         </Route>
+        <Route path="movie" element={<PopularMovies/>}></Route>
       </Route>
     </Routes>
     </>

@@ -1,0 +1,14 @@
+.load-more-button{
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    padding:.5rem;
+    background-color: hsl(37, 98%, 53%);
+    color: white;
+    text-shadow: .1rem .1rem .1rem rgba(0, 0, 0, 0.364);
+    font-size: 1.5rem;
+    border:none;
+    width: 50%;
+    margin:1rem auto;
+    border-radius: .6rem;
+}
