@@ -146,6 +146,8 @@ footer p {
         height: 100%;
     }
     .navigation-list{
+        padding: 1rem ;
+        list-style: none ;
         font-size: 0.9rem;
         border-radius:.5rem;
         position: absolute;
@@ -154,6 +156,7 @@ footer p {
         z-index: 2;
     }
     .navigation-list a{
+        width: 100%;
         padding: .7rem;
         padding-right: 2rem;
         padding-left: 0;
