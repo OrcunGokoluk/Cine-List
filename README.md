@@ -44,7 +44,7 @@ cd cinelist
 3. Install the dependencies:
 
 ```bash
-cd cinelist
+npm install
 ```
 
 4. Create a .env file in the root directory and define your TMDb API key as shown below:
