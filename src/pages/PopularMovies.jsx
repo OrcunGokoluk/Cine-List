@@ -60,7 +60,6 @@ function PopularMovies() {
       console.log("Work languages")
     },[])
 
-    console.log(languages)
     
     function applyFilters(formData){
 
@@ -76,8 +75,6 @@ function PopularMovies() {
           .catch(err=>console.log(err))
           console.log("Work f filter")
       }
-
-
   return (
     <>
 
@@ -92,7 +89,7 @@ function PopularMovies() {
           </AccordionHeader>
           <AccordionBody accordionId="1">
             <h3 className='sort-results-title'>Sort Results By</h3>
-            <select name="sort" id="sort-movies">
+            <select name="sort-movies" id="sort-movies">
               <option value="popularity.desc">Popularity Descending</option>
               <option value="popularity.asc">Popularity Ascending</option>
               <option value="vote_average.desc">Rating Descending</option>
@@ -108,7 +105,7 @@ function PopularMovies() {
           </AccordionHeader>
           <AccordionBody accordionId="2">
           <h3 className='sort-results-title'>Country</h3>
-          <select name="sort" id="countries">
+          <select name="sort-lang" id="countries">
             {
             languages?.sort().map(language=>{
               return <option value={language}>{language}</option>})}
