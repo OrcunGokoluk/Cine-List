@@ -12,3 +12,32 @@
     margin:1rem auto;
     border-radius: .6rem;
 }
+
+.filter-page-title{
+    font-weight: 700;
+    padding: 1rem;
+}
+.sort-results-title{
+    font-size: 1.2rem;
+    margin-bottom:1rem;
+}
+.filter-menu-title{
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+.filters-section{
+ margin: 1rem;
+}
+
+select{
+    padding: .3rem;
+}
+.search-by-filters-button{
+    display: block;
+    align-self: center;
+    border:rgb(43, 43, 43) 1px solid;
+    border-radius: .5rem;
+    width: 100%;
+    font-size: 1.5rem;
+    margin:1rem auto;
+}
