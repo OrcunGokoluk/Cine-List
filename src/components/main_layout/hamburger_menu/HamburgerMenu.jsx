@@ -6,6 +6,9 @@ import { IoArrowBackSharp } from "react-icons/io5";
 function HamburgerMenu() {
   const [toggleMenu, setToggleMenu] = useState(false);
 
+  //movie providers
+  //'https://api.themoviedb.org/3/watch/providers/movie?language=en-US' \
+
   return (
     <>
       <div className="hamburger-menu-logo">

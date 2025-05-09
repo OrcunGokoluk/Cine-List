@@ -13,8 +13,9 @@ function PopularMovies() {
     const [popMovies, setPopMovie] = useState([])
     const [movFilter, setMovFilter]=useState(null)
     const [languages, setLanguages] = useState([])
+    const [providers, setProviders] = useState([])
     const [page, setPage]= useState(1)
-    const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+    const [selectedProvider, setSelectedProvider] = useState(null);
 
 
 
@@ -22,7 +23,7 @@ function PopularMovies() {
 
     useEffect(()=>{
       if(movFilter&&movFilter!=="popularity.desc"){
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}&sort_by=${movFilter}`;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}&sort_by=${movFilter.sort}&watch_region=${movFilter.countryCode}&with_watch_providers=${selectedProvider}`;
         fetch(url)
           .then(res => res.json())
           .then(data => {
@@ -42,31 +43,25 @@ function PopularMovies() {
     },[page])
 
     useEffect(()=>{
-      fetch(`https://api.themoviedb.org/3/configuration/primary_translations?api_key=${API_KEY}`)
+      fetch(`https://api.themoviedb.org/3/watch/providers/regions?api_key=${API_KEY}`)
       .then(res=>res.json())
       .then(data=>{
-        const arr=[]
-        data?.map(language =>{
-          const countryCode = language.slice(-2);
-          if(!arr.includes(countryCode))
-          {
-          arr.push(countryCode)
-          const countryName = regionNames.of(countryCode);
-          setLanguages(prev=>[...prev,countryName])
-         }
-        }) 
-      })
+          console.log(data)
+          setLanguages(data.results)})
       .catch(err=>console.log(err))
-      console.log("Work languages")
-    },[])
+      },[])
 
     
-    function applyFilters(formData){
-
-      const filterMovieBy = formData.get("sort-movies")
-      setMovFilter(filterMovieBy)
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1&sort_by=${filterMovieBy}`;
-        fetch(url)
+    function applyFilters(e){
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = {
+        filterMovieBySort: formData.get("sort-movies"),
+        countryCode: formData.get("where-to-watch")
+        }
+      setMovFilter({sort:data.filterMovieBySort, countryCode:data.countryCode})
+        const sortURL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1&sort_by=${data.filterMovieBySort}&watch_region=${data.countryCode}&with_watch_providers=${selectedProvider}`;
+        fetch(sortURL)
           .then(res => res.json())
           .then(data => {
             setPopMovie(data.results);
@@ -75,14 +70,27 @@ function PopularMovies() {
           .catch(err=>console.log(err))
           console.log("Work f filter")
       }
+
+      function getProviders(dataFromOption){
+        const providerURL =`https://api.themoviedb.org/3/watch/providers/movie?api_key=${API_KEY}&watch_region=${dataFromOption}`
+        fetch(providerURL)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          setProviders(data.results)
+        })
+        .catch(err=>console.log(err)) 
+      }
+
   return (
     <>
 
     <section className='filter-page'>
     <h2 className='filter-page-title'>Popular Movies</h2>
 
-    <form action={applyFilters} className='filters-section'>
-      <UncontrolledAccordion defaultOpen="1">
+    <form onSubmit={applyFilters} className='filters-section'>
+      <UncontrolledAccordion defaultOpen="0">
+
         <AccordionItem>
           <AccordionHeader targetId="1">
             <p className='filter-menu-title'>Sort</p>
@@ -99,19 +107,32 @@ function PopularMovies() {
             </select>
           </AccordionBody>
         </AccordionItem>
+
         <AccordionItem>
           <AccordionHeader targetId="2">
           <p  className='filter-menu-title'>Where to watch</p>
           </AccordionHeader>
           <AccordionBody accordionId="2">
           <h3 className='sort-results-title'>Country</h3>
-          <select name="sort-lang" id="countries">
+          <select onChange={(e)=>getProviders(e.target.value)} name="where-to-watch" id="countries">
             {
-            languages?.sort().map(language=>{
-              return <option value={language}>{language}</option>})}
+            languages?.sort().map((language)=>{
+              return <option key={language.iso_3166_1} value={language.iso_3166_1}>{language.english_name}</option>})}
           </select>
+          <section className='provider-list'>
+            {providers?.map(provider=>
+            <img
+            src={`https://image.tmdb.org/t/p/w500${provider.logo_path}`}
+            alt={`${provider.provider_name}`}
+            onClick={() => setSelectedProvider(provider.provider_id)}
+            style={{
+              border: selectedProvider === provider.provider_id ? "3px solid rgb(255, 136, 0)" : "none",
+              cursor: "pointer",
+            }}/>)}
+          </section>
           </AccordionBody>
         </AccordionItem>
+
         <AccordionItem>
           <AccordionHeader targetId="3">
           <p  className='filter-menu-title'>Filters</p>
@@ -127,6 +148,7 @@ function PopularMovies() {
             , though the transition does limit overflow.
           </AccordionBody>
         </AccordionItem>
+        
       </UncontrolledAccordion>
       <button className='search-by-filters-button'>Search</button>
       </form>
