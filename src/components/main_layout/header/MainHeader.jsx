@@ -15,7 +15,7 @@ function MainHeader() {
 
         <nav className="desktop-navigation">
           <h1>
-            <span className="spn-logo">Cine</span>List
+           <NavLink to="/"><span className="spn-logo">Cine</span>List</NavLink> 
           </h1>
           <section className="main-menu-categories">
             <div

@@ -6,3 +6,9 @@
 p{
   margin:0;
 }
+h1 a{
+  color:aliceblue;
+}
+h1 a:visited{
+  color:aliceblue;
+}
