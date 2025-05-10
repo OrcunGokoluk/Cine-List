@@ -15,25 +15,31 @@ function PopularMovies() {
 
     const [opened, setOpened] = useState("")
     const [popMovies, setPopMovie] = useState([])
-    const [movFilter, setMovFilter]=useState(null)
+    const [movFilter, setMovFilter]=useState("")
 
     const [movGenres, setGenres]=useState([])
     const [page, setPage]= useState(1)
 
-    const [selectedProvider, setSelectedProvider] = useState(null);
-    const [selectedGenre, setSelectedGenre]= useState(null)
+    const [selectedProvider, setSelectedProvider] = useState("");
+    const [selectedGenre, setSelectedGenre]= useState("")
+
+    const [userCountryCode, setUserCountryCode] = useState("");
 
     const API_KEY=import.meta.env.VITE_TMDB_KEY;
 
     console.log("rendered")
     useEffect(()=>{
-      if(movFilter&&movFilter!=="popularity.desc"){
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}&sort_by=${movFilter.sort}&watch_region=${movFilter.countryCode}&with_watch_providers=${selectedProvider}&with_genres=${selectedGenre}`;
+      if(movFilter){
+              console.log("Provider from main:"+selectedProvider)
+              console.log("countryCode:"+userCountryCode)
+              console.log("movFilter:"+movFilter)
+              console.log("page:"+page)
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}&sort_by=${movFilter}&watch_region=${userCountryCode}&with_watch_providers=${selectedProvider}&with_genres=${selectedGenre}`;
         fetch(url)
           .then(res => res.json())
-          .then(data => {
-            setPopMovie(prev=>[...prev,...data.results]);
-          })
+          .then(data =>setPopMovie(prev=>[...prev,...data.results])
+          )
+
           .catch(err=>console.log(err))
           console.log("Work ue filter")
       }
@@ -63,17 +69,17 @@ function PopularMovies() {
       e.preventDefault();
       const formData = new FormData(e.target);
 
-      const data = {
-        filterMovieBySort: formData.get("sort-movies"),
-        countryCode: formData.get("where-to-watch")
+        const data = {
+        filterMovieBySort: formData.get("sort-movies")
         }
-      setMovFilter({sort:data.filterMovieBySort, countryCode:data.countryCode})
-        const sortURL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1&sort_by=${data.filterMovieBySort}&watch_region=${data.countryCode}&with_watch_providers=${selectedProvider}`;
+      setMovFilter(data.filterMovieBySort)
+      setPage(1);
+        const sortURL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1&sort_by=${data.filterMovieBySort}&watch_region=${userCountryCode}&with_watch_providers=${selectedProvider}&with_genres=${selectedGenre}`;
         fetch(sortURL)
           .then(res => res.json())
           .then(data => {
+            console.log(data)
             setPopMovie(data.results);
-            setPage(1);
           })
           .catch(err=>console.log(err))
           console.log("Work f filter")
@@ -114,7 +120,7 @@ function PopularMovies() {
           <AccordionBody accordionId="2">
               <Suspense fallback={<p>Loading...</p>}>
                   {opened === "2" && (
-                  <LanguagesFilter selectedProvider={selectedProvider} setSelectedProvider={setSelectedProvider} />
+                  <LanguagesFilter selectedProvider={selectedProvider} setSelectedProvider={setSelectedProvider} setUserCountryCode={setUserCountryCode} userCountryCode={userCountryCode}/>
                   )}
               </Suspense>
           </AccordionBody>
@@ -125,7 +131,7 @@ function PopularMovies() {
           <p  className='filter-menu-title'>Filters</p>
           </AccordionHeader>
           <AccordionBody accordionId="3">
-                  {/* {movGenres.map(genre=>
+                  {movGenres.map(genre=>
                 <div 
                   style={{
                     backgroundColor : selectedGenre===genre.id ? " #FCA311" : "#fefefefe",
@@ -133,7 +139,7 @@ function PopularMovies() {
                     color: selectedGenre===genre.id ? "white": "black"
                     }} 
                   onClick={()=>setSelectedGenre(genre.id)} key={genre.id}>{genre.name}
-                </div>)} */}
+                </div>)}
           </AccordionBody>
         </AccordionItem>
         
