@@ -1,4 +1,4 @@
-import React, {useState  ,useEffect} from 'react'
+import React, {lazy, Suspense, useState  ,useEffect} from 'react'
 import MovieCard from '../components/MovieCards/MovieCard';
 import "../CSS/navigation_pages/filter_pages.css"
 import {
@@ -8,16 +8,18 @@ import {
   AccordionItem,
 } from 'reactstrap';
 
+//const LanguagesFilter = lazy(() => import('../components/Filters/LanguagesFilter'));
+const LanguagesFilter = lazy(()=> import("../components/filter_panels/movies/LanguagesFilter"))
+
 function PopularMovies() {
 
+    const [opened, setOpened] = useState("")
     const [popMovies, setPopMovie] = useState([])
     const [movFilter, setMovFilter]=useState(null)
-    const [languages, setLanguages] = useState([])
-    const [providers, setProviders] = useState([])
+
+    const [genres, setGenres]=useState([])
     const [page, setPage]= useState(1)
     const [selectedProvider, setSelectedProvider] = useState(null);
-
-
 
     const API_KEY=import.meta.env.VITE_TMDB_KEY;
 
@@ -43,12 +45,14 @@ function PopularMovies() {
     },[page])
 
     useEffect(()=>{
-      fetch(`https://api.themoviedb.org/3/watch/providers/regions?api_key=${API_KEY}`)
+      fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
       .then(res=>res.json())
       .then(data=>{
-          console.log(data)
-          setLanguages(data.results)})
+        console.log(data)
+        setGenres(data)}
+      )
       .catch(err=>console.log(err))
+
       },[])
 
     
@@ -59,6 +63,8 @@ function PopularMovies() {
         filterMovieBySort: formData.get("sort-movies"),
         countryCode: formData.get("where-to-watch")
         }
+
+
       setMovFilter({sort:data.filterMovieBySort, countryCode:data.countryCode})
         const sortURL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1&sort_by=${data.filterMovieBySort}&watch_region=${data.countryCode}&with_watch_providers=${selectedProvider}`;
         fetch(sortURL)
@@ -71,16 +77,7 @@ function PopularMovies() {
           console.log("Work f filter")
       }
 
-      function getProviders(dataFromOption){
-        const providerURL =`https://api.themoviedb.org/3/watch/providers/movie?api_key=${API_KEY}&watch_region=${dataFromOption}`
-        fetch(providerURL)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          setProviders(data.results)
-        })
-        .catch(err=>console.log(err)) 
-      }
+
 
   return (
     <>
@@ -109,27 +106,15 @@ function PopularMovies() {
         </AccordionItem>
 
         <AccordionItem>
-          <AccordionHeader targetId="2">
+          <AccordionHeader targetId="2"  onClick={() => setOpened("2")} >
           <p  className='filter-menu-title'>Where to watch</p>
           </AccordionHeader>
           <AccordionBody accordionId="2">
-          <h3 className='sort-results-title'>Country</h3>
-          <select onChange={(e)=>getProviders(e.target.value)} name="where-to-watch" id="countries">
-            {
-            languages?.sort().map((language)=>{
-              return <option key={language.iso_3166_1} value={language.iso_3166_1}>{language.english_name}</option>})}
-          </select>
-          <section className='provider-list'>
-            {providers?.map(provider=>
-            <img
-            src={`https://image.tmdb.org/t/p/w500${provider.logo_path}`}
-            alt={`${provider.provider_name}`}
-            onClick={() => setSelectedProvider(provider.provider_id)}
-            style={{
-              border: selectedProvider === provider.provider_id ? "3px solid rgb(255, 136, 0)" : "none",
-              cursor: "pointer",
-            }}/>)}
-          </section>
+              <Suspense fallback={<p>Loading...</p>}>
+                  {opened === "2" && (
+                  <LanguagesFilter selectedProvider={selectedProvider} setSelectedProvider={setSelectedProvider} />
+                  )}
+              </Suspense>
           </AccordionBody>
         </AccordionItem>
 
