@@ -17,15 +17,18 @@ function PopularMovies() {
     const [popMovies, setPopMovie] = useState([])
     const [movFilter, setMovFilter]=useState(null)
 
-    const [genres, setGenres]=useState([])
+    const [movGenres, setGenres]=useState([])
     const [page, setPage]= useState(1)
+
     const [selectedProvider, setSelectedProvider] = useState(null);
+    const [selectedGenre, setSelectedGenre]= useState(null)
 
     const API_KEY=import.meta.env.VITE_TMDB_KEY;
 
+    console.log("rendered")
     useEffect(()=>{
       if(movFilter&&movFilter!=="popularity.desc"){
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}&sort_by=${movFilter.sort}&watch_region=${movFilter.countryCode}&with_watch_providers=${selectedProvider}`;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}&sort_by=${movFilter.sort}&watch_region=${movFilter.countryCode}&with_watch_providers=${selectedProvider}&with_genres=${selectedGenre}`;
         fetch(url)
           .then(res => res.json())
           .then(data => {
@@ -49,7 +52,7 @@ function PopularMovies() {
       .then(res=>res.json())
       .then(data=>{
         console.log(data)
-        setGenres(data)}
+        setGenres(data.genres)}
       )
       .catch(err=>console.log(err))
 
@@ -59,12 +62,11 @@ function PopularMovies() {
     function applyFilters(e){
       e.preventDefault();
       const formData = new FormData(e.target);
+
       const data = {
         filterMovieBySort: formData.get("sort-movies"),
         countryCode: formData.get("where-to-watch")
         }
-
-
       setMovFilter({sort:data.filterMovieBySort, countryCode:data.countryCode})
         const sortURL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1&sort_by=${data.filterMovieBySort}&watch_region=${data.countryCode}&with_watch_providers=${selectedProvider}`;
         fetch(sortURL)
@@ -123,14 +125,15 @@ function PopularMovies() {
           <p  className='filter-menu-title'>Filters</p>
           </AccordionHeader>
           <AccordionBody accordionId="3">
-            <strong>
-              This is the third item's accordion body.
-            </strong>
-            You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the{' '}
-            <code>
-              .accordion-body
-            </code>
-            , though the transition does limit overflow.
+                  {/* {movGenres.map(genre=>
+                <div 
+                  style={{
+                    backgroundColor : selectedGenre===genre.id ? " #FCA311" : "#fefefefe",
+                    cursor: "pointer",
+                    color: selectedGenre===genre.id ? "white": "black"
+                    }} 
+                  onClick={()=>setSelectedGenre(genre.id)} key={genre.id}>{genre.name}
+                </div>)} */}
           </AccordionBody>
         </AccordionItem>
         

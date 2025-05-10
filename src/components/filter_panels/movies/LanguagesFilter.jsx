@@ -12,7 +12,6 @@ function LanguagesFilter({selectedProvider, setSelectedProvider}) {
 
 
   // kendime not user'ın ülkesi bulmak ve başlangıç provider'larını otomatik çağırmak için aşşağıdaki iki side effecti kullandık
-  console.log("rendered")
 
     useEffect(() => {
       fetch("https://ipapi.co/json/")
@@ -42,6 +41,7 @@ function LanguagesFilter({selectedProvider, setSelectedProvider}) {
     useEffect(() => {
   if (languages.length && userCountryCode) {
     const found = languages.find(l => l.iso_3166_1 === userCountryCode);
+    console.log(found)
     if (found) {
       setSelectedCountry(found.english_name)
       getProviders(userCountryCode);
@@ -63,8 +63,8 @@ function LanguagesFilter({selectedProvider, setSelectedProvider}) {
 
 
 
-    function getProviders(dataFromOption){
-        const providerURL =`https://api.themoviedb.org/3/watch/providers/movie?api_key=${API_KEY}&watch_region=${dataFromOption}`
+    function getProviders(dt){
+        const providerURL =`https://api.themoviedb.org/3/watch/providers/movie?api_key=${API_KEY}&watch_region=${dt}`
         fetch(providerURL)
         .then(res => res.json())
         .then(data => {
@@ -78,8 +78,8 @@ function LanguagesFilter({selectedProvider, setSelectedProvider}) {
     <>
 
         <h3 className='sort-results-title'>Country</h3>
-          <select defaultValue="" onChange={(e)=>getProviders(e.target.value)} name="where-to-watch" id="countries">
-            <option value="" disabled hidden>{selectedCountry}</option>
+          <select value={userCountryCode || ""} onChange={(e)=>getProviders(e.target.value)} name="where-to-watch" id="countries">
+            <option value="" disabled hidden>{selectedCountry || "Select a country"}</option>
             {
             languages?.sort().map((language)=>{
               return <option key={language.iso_3166_1} value={language.iso_3166_1}>{language.english_name}</option>})}
